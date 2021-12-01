@@ -1,0 +1,202 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("../img/talk-6520941_1920.jpg");
+}
+
+.registro{
+    width: 400px;
+    background: black;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+.registro h4{
+    font-size: 22px;
+    margin-bottom: 20px;
+
+}
+.control{
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f531f;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+}
+
+.des{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 270px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.dir{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 200px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.cod{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 120px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.codi{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 20px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.doc{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 50%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+
+.tel{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 150px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.cor{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 175px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.fec{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 50%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.mov{
+    color:black;
+    font-weight: bold;
+    font-family: 'calibri';
+    font-size: 18px;
+    width: 600px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+}
+.registro p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+.registro a{
+    color: white;
+    text-decoration: none;
+}
+.registro a:hover{
+    color: white;
+    text-decoration: underline;
+}
+.boton{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btninsE{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btninsN{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btninsH{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btninsF{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.actu{
+    width: 100%;
+    background: #1f531f;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
