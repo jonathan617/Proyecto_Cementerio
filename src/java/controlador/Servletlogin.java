@@ -4,31 +4,27 @@
  */
 package controlador;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import static jdk.nashorn.tools.ShellFunctions.input;
-import modelo.Usuario;
-import modelo.UsuarioDao;
+import modelo.login;
+import modelo.loginDao;
 
 /**
  *
  * @author jonat
  */
-@WebServlet(name = "Servlet_Usuario", urlPatterns = {"/Servlet_Usuario"})
-public class Servlet_Usuario extends HttpServlet {
+@WebServlet(name = "Servletlogin", urlPatterns = {"/Servletlogin"})
+public class Servletlogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,62 +70,60 @@ public class Servlet_Usuario extends HttpServlet {
         processRequest(request, response);
         
         
-        JOptionPane.showMessageDialog(null, "Ser");
-        JOptionPane.showMessageDialog(null, "  El nombre");
-
-        int c;
-        String n, r, u, cl;
-        
-        if(request.getParameter("dato").equals("insertar")){
-            
-        int y;
-
-        c = Integer.parseInt(request.getParameter("c"));
-        n = request.getParameter("d");
-        r = request.getParameter("n");
-        u = request.getParameter("di");
-        cl = getMD5(request.getParameter("t"));
-
-        JOptionPane.showMessageDialog(null, "El nombre "+n);
-
-        Usuario usuario = new Usuario(c, n, r, u, cl);
-        UsuarioDao usdao = new UsuarioDao();
-
-        y = usdao.Insertar_Usuario(usuario);
-        if (y > 0) {
-            JOptionPane.showMessageDialog(null, " guardados");
-            response.sendRedirect("Usuario.jsp");
-        } else {
-            JOptionPane.showMessageDialog(null, " Fail");
-            response.sendRedirect("Usuario.jsp");
-        }
-        }
-        if(request.getParameter("dato").equals("actualizar")){
-            boolean dat;
-            c = Integer.parseInt(request.getParameter("c"));
-            n = request.getParameter("d");
-            r = request.getParameter("n");
-            u = request.getParameter("di");
-            cl = request.getParameter("t");
-            
-
-            JOptionPane.showMessageDialog(null,"El nombre "+n);
-
-            Usuario Usuario = new Usuario(c, n, r, u, cl);
-            UsuarioDao usdao = new UsuarioDao();
-            dat=usdao.actualizarusuario(Usuario);
-            if(dat){
-                JOptionPane.showMessageDialog(null, "datos actualizados");
-                response.sendRedirect("Usuario.jsp");
+        if(request.getParameter("btnlogin")!=null){
+            ArrayList<login> lista=new ArrayList<>();
+            String u,c,r,n,co;
+            int cod=0;
+            u=request.getParameter("usuario");
+            c=getMD5(request.getParameter("clave"));
+            JOptionPane.showMessageDialog(null, u+c);
+            r=request.getParameter("");
+            n=request.getParameter("");
+            login lo=new login(u, c);
+            loginDao id=new loginDao();
+            login datlo=new login(cod,r,u,c,n);
+            lista=id.LoginDao(lo);
+            JOptionPane.showMessageDialog(null, lista);
+            if(lista.size()>0){
+            for(int i=0;i<lista.size();i++){
+                datlo=lista.get(i);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "datos no fueron actualizados");
-                response.sendRedirect("Usuario.jsp");
+                if(datlo.getUsuario().equals(u) && datlo.getClave().equals(c)){
+                    JOptionPane.showMessageDialog(null, "Datos correctos");
+                    HttpSession sesion=request.getSession();
+                    sesion.setAttribute("rosesion",u);
+                    sesion.setAttribute("varsesion",datlo.getNombre());
+                    
+                    if(datlo.getRol().equals("administrador")){
+                        JOptionPane.showMessageDialog(null, datlo.getRol());
+                        JOptionPane.showMessageDialog(null, datlo.getCodigo());
+                        sesion.setAttribute("rol",datlo.getRol());
+                        sesion.setAttribute("Codigo", datlo.getCodigo());
+                            response.sendRedirect("EspacioEmpleado.jsp");
+                        
+                    }
+                    else if(datlo.getRol().equals("trabajador")){
+                        JOptionPane.showMessageDialog(null, datlo.getRol());
+                        JOptionPane.showMessageDialog(null, datlo.getCodigo());
+                        sesion.setAttribute("rol",datlo.getRol());
+                        sesion.setAttribute("Codigo", datlo.getCodigo());
+                            response.sendRedirect("EspacioEmpleado.jsp");
+                        
+                    }
+                    else if(datlo.getRol().equals("visitante")){
+                        JOptionPane.showMessageDialog(null, datlo.getRol());
+                        JOptionPane.showMessageDialog(null, datlo.getCodigo());
+                        sesion.setAttribute("rol",datlo.getRol());
+                        sesion.setAttribute("Codigo", datlo.getCodigo());
+                            response.sendRedirect("EspacioEmpleado.jsp");
+                        
+                    }
+            }
             }
         }
         
     }
-        public String getMD5(String input){
+    public String getMD5(String input){
         try {
             MessageDigest md=MessageDigest.getInstance("MD5");
             byte[] encBytes=md.digest(input.getBytes());
@@ -143,6 +137,7 @@ public class Servlet_Usuario extends HttpServlet {
              throw new RuntimeException(e);
         }
     }
+
     /**
      * Returns a short description of the servlet.
      *
